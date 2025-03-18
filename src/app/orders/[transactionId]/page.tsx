@@ -27,25 +27,29 @@ export default function OrderDetails() {
                         gameId={order.gameId}
                         amount={order.amount}
                     />
-                </div>
-                <div className='orders__information'>
-                    <div className='orders__names'>
-                        <div className='orders__name'>Your Goods:</div>
-                        <div className='orders__name'>1 - 279,99$</div>
-                    </div>
-                    <div className='orders__numbers'>
-                        <div className='orders__row'>
-                            <span className='orders__number'>40,500</span>
-                            <p className='orders__bonus'>+1,500</p>
+                    <div className={styles.orders__information}>
+                        <div className={styles.orders__informationBox}>
+                            <div className={styles.orders__names}>
+                                <p className={styles.orders__name}>Your Goods:</p>
+                                <p className={styles.orders__name}>
+                                    <span>1 - 279,99$</span>
+                                </p>
+                            </div>
+                            <div className={styles.orders__numbers}>
+                                <div className={styles.orders__row}>
+                                    <span className={styles.orders__number}>40,500</span>
+                                    <p className={styles.orders__bonus}>+1,500</p>
+                                </div>
+                                <div className={styles.orders__row}>
+                                    <span className={styles.orders__number}>279,99$</span>
+                                    <p className={styles.orders__old}>749.99$</p>
+                                </div>
+                            </div>
+                            <a href='#' className={styles.orders__informationButton}>
+                                Ask?
+                            </a>
                         </div>
-                        <div className='orders__row'>
-                            <span className='orders__number'>279,99$</span>
-                            <p className='orders__old'>749.99$</p>
-                        </div>
                     </div>
-                    <a href='#' className='orders__button'>
-                        Ask?
-                    </a>
                 </div>
             </div>
         </section>

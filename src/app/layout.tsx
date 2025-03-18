@@ -43,8 +43,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <title>Orders</title>
             </head>
-            <body>
-                <div className='wrapper max-width'>
+            <body >
+                <div className='wrapper max-width' id="__next">
                     <header className='header' id='header'>
                         <div className='container'>
                             <div className='header__inner'>
