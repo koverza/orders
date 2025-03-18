@@ -1,0 +1,43 @@
+@use './scss/variables.scss' as *;
+@use './scss/mixins.scss' as *;
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 52px);
+    &__inner {
+    }
+
+    &__button {
+        width: 264px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        background: rgb(255, 255, 255);
+        color: black;
+        margin: 0 auto;
+    }
+    &__button:not(:last-child) {
+        margin-bottom: 10px;
+    }
+    &__button:last-child {
+        width: 296px;
+        height: 42px;
+        font-weight: bold;
+        margin-top: 40px;
+    }
+}
+.notFound {
+    &__inner {
+        padding-block: 14px;
+    }
+    &__title {
+        font-size: 34px;
+        font-weight: bold;
+        text-align: center;
+    }
+}
