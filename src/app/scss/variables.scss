@@ -5,12 +5,12 @@ $minWidth: 320;
 $maxWidth: 1440;
 $maxWidthContainer: 1273;
 $containerPadding: 15;
-$containerWidth: $maxWidthContainer + $containerPadding; // Ширина р абатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
 
 /* Dimensions */
-$TV_8k: 7680 + px; // 7680x4320 — максимальное доступное на рынке разрешение для крупных телевизоров.
-$TV_4k: 3840 + px; // 3840x2160 — стандарт для большинства телевизоров среднего и высокого класса.
-$TV_fullHD: 1921 + px; // 1920x1080 — минимальный стандарт для большинства современных телевизоров.
+$TV_8k: 7680 + px; 
+$TV_4k: 3840 + px; 
+$TV_fullHD: 1921 + px; 
 $iMac: 1399 + px;
 $macBook: 1199 + px;
 $ipad: 991 + px;

@@ -3,9 +3,11 @@ interface PhotoDisplayProps {
 }
 
 const PhotoDisplay = ({ photo }: PhotoDisplayProps) => {
-    return <div className="header__language">
-        <img src={photo} alt='icon' />
-    </div>;
+    return (
+        <div className='header__language'>
+            <img src={photo} alt='icon' />
+        </div>
+    );
 };
 
 export default PhotoDisplay;

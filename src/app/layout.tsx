@@ -3,7 +3,6 @@ import { useState } from 'react';
 import './scss/variables.scss';
 import './scss/reset.scss';
 import './scss/mixins.scss';
-import './scss/templates.scss';
 import './layout.scss';
 import Dropdown from './components/Dropdown';
 import PhotoDisplay from './components/PhotoDisplay';
@@ -43,8 +42,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <title>Orders</title>
             </head>
-            <body >
-                <div className='wrapper max-width' id="__next">
+            <body>
+                <div className='wrapper max-width' id='__next'>
                     <header className='header' id='header'>
                         <div className='container'>
                             <div className='header__inner'>

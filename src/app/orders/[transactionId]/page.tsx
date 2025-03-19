@@ -1,7 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
 import styles from '../page.module.scss';
-import { orders } from '../../models/mock';
+import { orders } from '../../models/orders';
 import OrderItem from '@/app/components/OrderItem';
 import BackBlock from '@/app/components/BackBlock';
 import NotFound from '@/app/not-found';
@@ -17,7 +17,7 @@ export default function OrderDetails() {
     return (
         <section className={styles.orders}>
             <div className={styles.orders__inner}>
-                <BackBlock name={order.transactionId} src={'/cross.svg'} />
+                <BackBlock href='/orders' name={order.transactionId} src={'/cross.svg'} />
                 <div className={styles.orders__content}>
                     <OrderItem
                         transactionId={order.transactionId}

@@ -1,5 +1,5 @@
-@use './scss/variables.scss' as *;
-@use './scss/mixins.scss' as *;
+@use './scss/variables.scss' as variables;
+@use './scss/mixins.scss' as mixins;
 
 .home {
     display: flex;
@@ -7,7 +7,14 @@
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 52px);
+
     &__inner {
+    }
+
+    &__user {
+        font-weight: bold;
+        text-align: center;
+        @include mixins.adaptiveValue('font-size', 34, 18, 0, variables.$maxWidth, 992);
     }
 
     &__button {
@@ -21,20 +28,203 @@
         color: black;
         margin: 0 auto;
     }
+
     &__button:not(:last-child) {
         margin-bottom: 10px;
     }
+
     &__button:last-child {
         width: 296px;
         height: 42px;
         font-weight: bold;
-        margin-top: 40px;
+        @include mixins.adaptiveValue('margin-top', 40, 20, 0, variables.$maxWidth, 992);
     }
+
+    &__modal {
+        background: rgb(32, 36, 44);
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 400px;
+        margin: 16px;
+    }
+
+    &__tabsBlock {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__tabs {
+        width: 100%;
+        height: 40px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px;
+        gap: 5px;
+    }
+
+    &__tab {
+        border-radius: 20px;
+        color: black;
+        width: 100%;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 3%;
+
+        &.active {
+            background-color: white;
+            color: black;
+        }
+    }
+
+    &__tabButton {
+        margin-left: 15px;
+    }
+
+    &__tabsContent {
+        margin-top: 24px;
+    }
+
+    &__tabsInput:not(:first-child) {
+        margin-top: 8px;
+    }
+
+    &__tabsInput {
+        width: 100%;
+        height: 44px;
+        padding-inline: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        background: rgb(17, 20, 25);
+        color: white;
+    }
+
+    &__tabsInput::placeholder {
+        color: rgb(255, 255, 255);
+        opacity: 0.5;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 3%;
+        padding-inline: 6px;
+    }
+
+    &__checkboxBlock {
+        display: flex;
+        align-items: center;
+        margin-top: 24px;
+    }
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__checkboxLabel {
+        position: relative;
+        padding-left: 25px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        height: 20px;
+    }
+
+    &__checkboxLabel::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: transparent;
+    }
+
+    &__checkbox:checked + &__checkboxLabel::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 2px;
+    }
+
+    &__checkboxText {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    &__modalButton {
+        width: 100%;
+        margin-top: 24px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        background: rgb(255, 255, 255);
+        color: black;
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 3%;
+    }
+
+    &__media {
+        margin-top: 24px;
+    }
+
+    &__mediaText {
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 3%;
+        text-align: center;
+    }
+
+    &__mediaRow {
+        margin-top: 12px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+.forgot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 3%;
+    text-decoration-line: underline;
+    opacity: 0.5;
+    margin-top: 24px;
 }
 .notFound {
     &__inner {
         padding-block: 14px;
     }
+
     &__title {
         font-size: 34px;
         font-weight: bold;
@@ -52,13 +242,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.modal {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }

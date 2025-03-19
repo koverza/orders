@@ -25,7 +25,6 @@ body {
     min-width: $minWidth;
 }
 body {
-    
     background-color: $mainColor;
     line-height: 1;
     font-family: $fontFamily;
@@ -74,17 +73,16 @@ h6 {
     font-size: inherit;
 }
 .wrapper {
-    min-height: 100vh; 
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 .main {
-    flex: 1; 
-
+    flex: 1;
 }
 .max-width {
-    // max-width: $maxWidth + px; // for full background $maxWidth + px
+    // max-width: $maxWidth + px; 
     margin: 0 auto;
 }
 .container {

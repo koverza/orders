@@ -19,7 +19,7 @@ const CustomModal = ({ isOpen, onRequestClose, contentLabel, children }: ModalPr
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel={contentLabel}
-            className={styles.modal}
+            className={styles.home__modal}
             overlayClassName={styles.overlay}
         >
             {children}
