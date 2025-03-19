@@ -1,7 +1,6 @@
 'use client';
 import styles from './page.module.scss';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthButtons from './components/AuthButtons';
@@ -18,9 +17,11 @@ export default function Home() {
         password: '',
         confirmPassword: ''
     });
+    const [isChecked, setIsChecked] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loggedInUser, setLoggedInUser] = useState('');
 
+    // Load logged-in user from localStorage if exists
     useEffect(() => {
         const savedEmail = localStorage.getItem('loggedInUser');
         if (savedEmail) {
@@ -28,6 +29,7 @@ export default function Home() {
         }
     }, []);
 
+    // Load logged-in state from sessionStorage if exists
     useEffect(() => {
         const savedEmail = sessionStorage.getItem('loggedInUser');
         if (savedEmail) {
@@ -59,10 +61,16 @@ export default function Home() {
         setRegistrationData({ ...registrationData, [name]: value });
     };
 
-    const handleLogin = async () => {
-        try {
-            const response = await axios.post('/.netlify/functions/login', loginData);
-            if (response.data.message === 'Login successful') {
+    const handleLogin = () => {
+        if (!loginData.email || !loginData.password) {
+            toast.error('Please enter email and password');
+            return;
+        }
+        // Check for registered user stored in localStorage
+        const storedUser = localStorage.getItem('registeredUser');
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            if (user.email === loginData.email && user.password === loginData.password) {
                 toast.success('Login successful');
                 setIsLoggedIn(true);
                 setLoggedInUser(loginData.email);
@@ -71,32 +79,46 @@ export default function Home() {
             } else {
                 toast.error('Invalid email or password');
             }
-        } catch (error) {
-            console.error('Error logging in:', error);
-            toast.error('Error logging in');
+        } else {
+            toast.error('No registered user found. Please register.');
         }
     };
 
-    const handleRegistration = async () => {
-        try {
-            const response = await axios.post('/.netlify/functions/register', {
-                email: registrationData.email,
-                password: registrationData.password
-            });
-            if (response.data.message === 'User registered successfully') {
-                toast.success(`Registration successful. Welcome, ${registrationData.email}!`);
-                setLoggedInUser(registrationData.email);
-                sessionStorage.setItem('loggedInUser', registrationData.email);
-                closeModal();
-                setActiveTab('login');
-                setModalIsOpen(true);
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (error) {
-            console.error('Error registering:', error);
-            toast.error('Error registering');
+    const handleRegistration = () => {
+        // Validate that all fields are filled
+        if (
+            !registrationData.email ||
+            !registrationData.password ||
+            !registrationData.confirmPassword
+        ) {
+            toast.error('Please fill in all fields');
+            return;
         }
+        // Check that passwords match
+        if (registrationData.password !== registrationData.confirmPassword) {
+            toast.error('Passwords do not match');
+            return;
+        }
+        // Check if the checkbox is checked
+        if (!isChecked) {
+            toast.error('You must agree to the terms');
+            return;
+        }
+        // Simulate successful registration by saving user data in localStorage
+        const user = {
+            email: registrationData.email,
+            password: registrationData.password
+        };
+        localStorage.setItem('registeredUser', JSON.stringify(user));
+        toast.success(`Registration successful. Welcome, ${registrationData.email}!`);
+        setLoggedInUser(registrationData.email);
+        sessionStorage.setItem('loggedInUser', registrationData.email);
+        closeModal();
+        setActiveTab('login');
+        setModalIsOpen(true);
+        // Reset registration fields and checkbox
+        setRegistrationData({ email: '', password: '', confirmPassword: '' });
+        setIsChecked(false);
     };
 
     const handleOrdersClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -127,6 +149,8 @@ export default function Home() {
                 handleRegistrationChange={handleRegistrationChange}
                 handleLogin={handleLogin}
                 handleRegistration={handleRegistration}
+                isChecked={isChecked}
+                setIsChecked={setIsChecked}
             />
             <ToastContainer />
         </section>

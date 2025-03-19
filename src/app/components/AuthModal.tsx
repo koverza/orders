@@ -17,6 +17,8 @@ interface AuthModalProps {
     handleRegistrationChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleLogin: () => void;
     handleRegistration: () => void;
+    isChecked: boolean;
+    setIsChecked: (checked: boolean) => void;
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({
@@ -29,7 +31,9 @@ const AuthModal: React.FC<AuthModalProps> = ({
     handleLoginChange,
     handleRegistrationChange,
     handleLogin,
-    handleRegistration
+    handleRegistration,
+    isChecked,
+    setIsChecked
 }) => {
     return (
         <CustomModal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel='Modal'>
@@ -76,12 +80,12 @@ const AuthModal: React.FC<AuthModalProps> = ({
                             <p className={styles.home__mediaText}>Use social networks</p>
                             <div className={styles.home__mediaRow}>
                                 {links.map(link => (
-                                    <CustomLink key={link.src} href={'#'} src={link.src} />
+                                    <CustomLink key={link.src} href='#' src={link.src} />
                                 ))}
                             </div>
                         </div>
                         <Link href='#' className={styles.forgot}>
-                            <p>Forgot password ?</p>
+                            <p>Forgot password?</p>
                         </Link>
                     </>
                 ) : (
@@ -110,13 +114,12 @@ const AuthModal: React.FC<AuthModalProps> = ({
                         <div className={styles.home__checkboxBlock}>
                             <input
                                 type='checkbox'
-                                id='useSocialNetworks'
+                                id='terms'
                                 className={styles.home__checkbox}
+                                checked={isChecked}
+                                onChange={e => setIsChecked(e.target.checked)}
                             />
-                            <label
-                                htmlFor='useSocialNetworks'
-                                className={styles.home__checkboxLabel}
-                            >
+                            <label htmlFor='terms' className={styles.home__checkboxLabel}>
                                 <span className={styles.home__checkboxText}>
                                     Use social networks
                                 </span>
@@ -129,7 +132,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                             <p className={styles.home__mediaText}>Use social networks</p>
                             <div className={styles.home__mediaRow}>
                                 {links.map(link => (
-                                    <CustomLink key={link.src} href={'#'} src={link.src} />
+                                    <CustomLink key={link.src} href='#' src={link.src} />
                                 ))}
                             </div>
                         </div>
